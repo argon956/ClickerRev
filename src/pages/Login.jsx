@@ -51,22 +51,20 @@ const Login = () => {
   return (
     <>
       <div>
-        <h1 className="text-indigo-600 font-black text-6xl">
+        <h1 className="login-primary-title">
           Cookie Clicker {""}
-          <span className="text-black">Revisited</span>
+          <span className="login-secondary-title">Revisited</span>
         </h1>
       </div>
-      <div className="mt-20 md:mt-5 shadow-lg px-5 py-10 rounded-xl bg-white">
+      <div className="login-alert">
         {msg && <Alert alert={alert} />}
         <form onSubmit={handleSubmit}>
-          <div className="my-5">
-            <label className="uppercase text-gray-600 block text-xl font-bold">
-              name
-            </label>
+          <div className="login-form-container">
+            <label className="login-name-input-label">name</label>
             <input
               type="text"
               placeholder="Player name"
-              className="border w-full p-3 mt-3 bg-gray-50 rounded-xl "
+              className="login-name-input-field"
               value={name}
               onChange={(e) => setName(e.target.value)}
             />
@@ -74,7 +72,7 @@ const Login = () => {
           <input
             type="submit"
             value="Start / Resume Game"
-            className="bg-indigo-700 w-full py-3 px-10 rounded-xl text-white uppercase font-bold mt-5 hover:cursor-pointer hover:bg-indigo-800 md:w-auto"
+            className="login-start-game-button"
           />
         </form>
       </div>

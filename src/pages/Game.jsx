@@ -86,6 +86,47 @@ const Game = () => {
     setNotEnoughPoints(true);
   };
 
+  const scoreToThousandsOrMillions = (value) => {
+    const stringifiedNumber = value.toString();
+    let numberModified = "Not available";
+    if (stringifiedNumber?.length > 3) {
+      numberModified =
+        stringifiedNumber.slice(0, 1) +
+        "." +
+        stringifiedNumber.slice(1, 2) +
+        "K";
+    }
+    if (stringifiedNumber?.length > 4) {
+      numberModified =
+        stringifiedNumber.slice(0, 2) +
+        "." +
+        stringifiedNumber.slice(2, 3) +
+        "K";
+    }
+    if (stringifiedNumber?.length > 5) {
+      numberModified =
+        stringifiedNumber.slice(0, 3) +
+        "." +
+        stringifiedNumber.slice(3, 4) +
+        "K";
+    }
+    if (stringifiedNumber?.length > 6) {
+      numberModified =
+        stringifiedNumber.slice(0, 1) +
+        "." +
+        stringifiedNumber.slice(1, 4) +
+        "M";
+    }
+    if (stringifiedNumber?.length > 7) {
+      numberModified =
+        stringifiedNumber.slice(0, 2) +
+        "." +
+        stringifiedNumber.slice(1, 4) +
+        "M";
+    }
+    return numberModified;
+  };
+
   const checkMinScore = useCallback(() => {
     if (autoClickerCost <= counter) {
       setNotEnoughPoints(false);
@@ -124,14 +165,19 @@ const Game = () => {
               data-testid="autoclickers-purchased-container"
             >
               <div className="game-autoclickers-purchased-items-text">
-                AutoClickers:
+                AutoClickers:{" "}
                 <span className="game-autoclickers-purchased-value-text">
-                  {" "}
                   {purchasedAutoClickers}
                 </span>
               </div>
             </div>
           ) : null}
+          <div className="game-score-alternate-container">
+            Score in thousands / millions:{" "}
+            <span className="game-score-alternate-text">
+              {scoreToThousandsOrMillions(counter)}
+            </span>
+          </div>
         </div>
         <div className="">
           <div>

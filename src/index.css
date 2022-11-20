@@ -15,6 +15,10 @@
     @apply text-4xl mt-3;
   }
 
+  .game-score-alternate-container {
+    @apply text-4xl mt-3;
+  }
+
   .game-scoring-buttons {
     @apply mt-5;
   }

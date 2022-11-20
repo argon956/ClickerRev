@@ -8,6 +8,7 @@ const Game = () => {
   const loggedPlayerName = storageHelper.get("loggedPlayerName");
   const playerList = storageHelper.get("players");
   const player = playerList?.find(({ name }) => name === loggedPlayerName);
+  const highScores = playerList?.sort((a, b) => b.points - a.points);
 
   let setIntervalFunction;
 
@@ -138,6 +139,18 @@ const Game = () => {
             >
               Buy an AutoClicker for {autoClickerCost} points
             </button>
+          </div>
+          <div className="game-high-scores-container" data-testid="high-scores">
+            <span className="game-high-scores-title">Hall of Fame</span>
+            <div className="game-high-scores-scoreboard">
+              {highScores?.map(({ name, points }, index) => {
+                return (
+                  <div key={index}>
+                    {name} - {points} points
+                  </div>
+                );
+              })}
+            </div>
           </div>
         </div>
       </div>

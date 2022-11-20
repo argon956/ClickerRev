@@ -1,0 +1,40 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  .game-main-container {
+    @apply text-center;
+  }
+
+  .game-score-container {
+    @apply font-black text-6xl mt-10;
+  }
+
+  .game-autoclickers-purchased-container {
+    @apply text-4xl mt-3;
+  }
+
+  .game-scoring-buttons {
+    @apply mt-5;
+  }
+
+  .game-score-point-button {
+    @apply bg-indigo-700 w-full py-3 px-10 rounded-xl text-white uppercase font-bold mt-5 hover:cursor-pointer hover:bg-indigo-800 md:w-auto;
+  }
+  .game-autoclicker-buy-button {
+    @apply bg-gray-300 w-full py-3 px-10 rounded-xl text-indigo-700 uppercase font-bold mt-5 hover:cursor-pointer hover:bg-gray-200 md:w-auto;
+  }
+
+  .game-high-scores-container {
+    @apply mt-10;
+  }
+
+  .game-high-scores-title {
+    @apply font-black text-5xl;
+  }
+
+  .game-high-scores-scoreboard {
+    @apply font-black text-xl mt-4;
+  }
+}

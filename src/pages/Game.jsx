@@ -144,12 +144,8 @@ const Game = () => {
 
   return (
     <>
-      <nav>
-        <Link
-          to="/"
-          className="font-bold uppercase text-gray-500"
-          onClick={stopSetInterval}
-        >
+      <nav className="game-exit-button">
+        <Link to="/" className="game-exit-button" onClick={stopSetInterval}>
           Exit
         </Link>
       </nav>

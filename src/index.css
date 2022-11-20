@@ -41,4 +41,8 @@
   .game-high-scores-scoreboard {
     @apply font-black text-xl mt-4;
   }
+
+  .game-exit-button {
+    @apply font-bold uppercase text-gray-500 h-px;
+  }
 }

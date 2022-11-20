@@ -149,10 +149,13 @@ const Game = () => {
           Exit
         </Link>
       </nav>
-      <div className="game-main-container">
-        <div className="game-score-container">
+      <div className="game-main-container" data-testid="game-main-container">
+        <div
+          className="game-score-container"
+          data-testid="game-score-container"
+        >
           Score:{" "}
-          <span className="game-score-text" data-testid="score-text">
+          <span className="game-score-text" data-testid="game-score-text">
             {counter}
           </span>
           {showAutoClickersQuantity ? (
@@ -170,7 +173,10 @@ const Game = () => {
           ) : null}
           <div className="game-score-alternate-container">
             Score in thousands / millions:{" "}
-            <span className="game-score-alternate-text">
+            <span
+              className="game-score-alternate-text"
+              data-testid="game-score-alternate-text"
+            >
               {scoreToThousandsOrMillions(counter)}
             </span>
           </div>
@@ -195,7 +201,10 @@ const Game = () => {
               Buy an AutoClicker for {autoClickerCost} points
             </button>
           </div>
-          <div className="game-high-scores-container" data-testid="high-scores">
+          <div
+            className="game-high-scores-container"
+            data-testid="game-high-scores-container"
+          >
             <span className="game-high-scores-title">Hall of Fame</span>
             <div className="game-high-scores-scoreboard">
               {highScores?.map(({ name, points }, index) => {

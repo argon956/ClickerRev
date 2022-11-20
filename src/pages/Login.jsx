@@ -50,21 +50,31 @@ const Login = () => {
 
   return (
     <>
-      <div>
-        <h1 className="login-primary-title">
+      <div data-testid="login-app-name-title">
+        <h1 className="login-primary-title" data-testid="login-primary-title">
           Cookie Clicker {""}
-          <span className="login-secondary-title">Revisited</span>
+          <span
+            className="login-secondary-title"
+            data-testid="login-secondary-title"
+          >
+            Revisited
+          </span>
         </h1>
       </div>
-      <div className="login-alert">
+      <div className="login-form-container">
         {msg && <Alert alert={alert} />}
         <form onSubmit={handleSubmit}>
-          <div className="login-form-container">
+          <div
+            className="login-form-container"
+            data-testid="login-player-name-input"
+          >
             <label className="login-name-input-label">name</label>
             <input
               type="text"
               placeholder="Player name"
               className="login-name-input-field"
+              data-testid="login-name-input-field"
+              data-cy="login-name-input-field"
               value={name}
               onChange={(e) => setName(e.target.value)}
             />
@@ -72,6 +82,8 @@ const Login = () => {
           <input
             type="submit"
             value="Start / Resume Game"
+            data-testid="login-button"
+            data-cy="login-button"
             className="login-start-game-button"
           />
         </form>

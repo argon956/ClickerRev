@@ -27,7 +27,7 @@
     @apply border w-full p-3 mt-3 bg-gray-50 rounded-xl;
   }
 
-  .login-alert {
+  .login-form-container {
     @apply mt-20 md:mt-5 shadow-lg px-5 py-10 rounded-xl bg-white;
   }
 

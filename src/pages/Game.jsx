@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback } from "react";
+import { Link } from "react-router-dom";
 import { storageHelper } from "../helpers/storageHelper";
 
-import AdminNav from "../components/AdminNav";
 import Footer from "../components/Footer";
 
 const Game = () => {
@@ -10,15 +10,15 @@ const Game = () => {
   const player = playerList?.find(({ name }) => name === loggedPlayerName);
   const highScores = playerList?.sort((a, b) => b.points - a.points);
 
-  let setIntervalFunction;
-
-  const [counter, setCounter] = useState(player?.points);
+  const [counter, setCounter] = useState(player?.points || 0);
   const [purchasedAutoClickers, setPurchasedAutoClickers] = useState(
-    player?.autoClickers
+    player?.autoClickers || 0
   );
-  const [showAutoClickersQuantity, setShowAutoClickersQuantity] =
-    useState(false);
-  const [notEnoughPoints, setNotEnoughPoints] = useState(false);
+  const [showAutoClickersQuantity, setShowAutoClickersQuantity] = useState(
+    purchasedAutoClickers > 0
+  );
+  const [notEnoughPoints, setNotEnoughPoints] = useState(true);
+  const [resumeIntervalFunction, setResumeIntervalFunction] = useState(true);
 
   const autoClickerBaseCost = 10;
 
@@ -26,6 +26,7 @@ const Game = () => {
     autoClickerBaseCost + autoClickerBaseCost * purchasedAutoClickers;
 
   const intervalTime = 100 / (purchasedAutoClickers || 1);
+  let setIntervalFunction;
 
   const playersUpdated = playerList?.map((playerToUpdate) => {
     if (playerToUpdate.name === loggedPlayerName) {
@@ -51,27 +52,33 @@ const Game = () => {
     });
   };
 
-  const updatePlayersPoints = () => {
+  const updatePlayerPoints = () => {
     setCounter((prevCounter) => {
       return prevCounter + 1;
     });
   };
 
+  if (resumeIntervalFunction) {
+    setIntervalFunction =
+      purchasedAutoClickers > 0
+        ? setInterval(updatePlayerPoints, intervalTime)
+        : null;
+    setResumeIntervalFunction(false);
+  }
+
   const addAutoClicker = () => {
-    console.log("Aquí ando");
-    setIntervalFunction = setInterval(updatePlayersPoints, intervalTime);
+    setIntervalFunction = setInterval(updatePlayerPoints, intervalTime);
   };
 
   const purchaseAutoClickers = () => {
     setCounter((prevCounter) => {
-      setPurchasedAutoClickers((prevpurchasedAutoClickers) => {
-        const autoClickers = prevpurchasedAutoClickers + 1;
+      setPurchasedAutoClickers((prevPurchasedAutoClickers) => {
+        const autoClickers = prevPurchasedAutoClickers + 1;
         setShowAutoClickersQuantity(true);
         if (prevCounter < autoClickerCost) {
           setNotEnoughPoints(true);
         }
         addAutoClicker();
-        console.log(autoClickers);
         return autoClickers;
       });
       return prevCounter - autoClickerCost;
@@ -85,21 +92,27 @@ const Game = () => {
     }
   }, [autoClickerCost, counter]);
 
-  useEffect(() => {
-    checkMinScore();
-  }, [checkMinScore]);
-
   const stopSetInterval = () => {
     clearInterval(setIntervalFunction);
     setIntervalFunction = null;
   };
 
-  // TODO: add an event listener each time an autoclicker is added
+  useEffect(() => {
+    checkMinScore();
+  }, [checkMinScore]);
 
   return (
     <>
-      <AdminNav />
-      <div class="game-main-container">
+      <nav>
+        <Link
+          to="/"
+          className="font-bold uppercase text-gray-500"
+          onClick={stopSetInterval}
+        >
+          Exit
+        </Link>
+      </nav>
+      <div className="game-main-container">
         <div className="game-score-container">
           Score:{" "}
           <span className="game-score-text" data-testid="score-text">
@@ -120,7 +133,7 @@ const Game = () => {
             </div>
           ) : null}
         </div>
-        <div className="game-scoring-buttons">
+        <div className="">
           <div>
             <button
               className="game-score-point-button"
@@ -135,7 +148,7 @@ const Game = () => {
               className="game-autoclicker-buy-button"
               data-cy="autoclicker-buy-button"
               onClick={purchaseAutoClickers}
-              disabled={notEnoughPoints}
+              hidden={notEnoughPoints}
             >
               Buy an AutoClicker for {autoClickerCost} points
             </button>

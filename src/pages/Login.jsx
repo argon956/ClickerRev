@@ -50,7 +50,7 @@ const Login = () => {
 
   return (
     <>
-      <div data-testid="login-app-name-title">
+      <div data-testid="login-app-name-title" data-cy="login-app-name-title">
         <h1 className="login-primary-title" data-testid="login-primary-title">
           Cookie Clicker {""}
           <span

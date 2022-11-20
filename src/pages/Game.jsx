@@ -145,17 +145,30 @@ const Game = () => {
   return (
     <>
       <nav className="game-exit-button">
-        <Link to="/" className="game-exit-button" onClick={stopSetInterval}>
+        <Link
+          to="/"
+          className="game-exit-button"
+          data-cy="game-exit-button"
+          onClick={stopSetInterval}
+        >
           Exit
         </Link>
       </nav>
-      <div className="game-main-container" data-testid="game-main-container">
+      <div
+        className="game-main-container"
+        data-testid="game-main-container"
+        data-cy="game-main-container"
+      >
         <div
           className="game-score-container"
           data-testid="game-score-container"
         >
           Score:{" "}
-          <span className="game-score-text" data-testid="game-score-text">
+          <span
+            className="game-score-text"
+            data-testid="game-score-text"
+            data-cy="game-score-text"
+          >
             {counter}
           </span>
           {showAutoClickersQuantity ? (
@@ -163,9 +176,15 @@ const Game = () => {
               className="game-autoclickers-purchased-container"
               data-testid="autoclickers-purchased-container"
             >
-              <div className="game-autoclickers-purchased-items-text">
+              <div
+                className="game-autoclickers-purchased-items-text"
+                data-cy="autoclickers-purchased-items-text"
+              >
                 AutoClickers:{" "}
-                <span className="game-autoclickers-purchased-value-text">
+                <span
+                  className="game-autoclickers-purchased-value-text"
+                  data-cy="autoclickers-purchased-value-text"
+                >
                   {purchasedAutoClickers}
                 </span>
               </div>
@@ -176,6 +195,7 @@ const Game = () => {
             <span
               className="game-score-alternate-text"
               data-testid="game-score-alternate-text"
+              data-cy="game-score-alternate-text"
             >
               {scoreToThousandsOrMillions(counter)}
             </span>
@@ -185,7 +205,7 @@ const Game = () => {
           <div>
             <button
               className="game-score-point-button"
-              data-cy="game-score-point-button"
+              data-cy="score-point-button"
               onClick={handleScoreIncrease}
             >
               Score 1 point

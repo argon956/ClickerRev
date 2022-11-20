@@ -31,6 +31,14 @@
     @apply mt-20 md:mt-5 shadow-lg px-5 py-10 rounded-xl bg-white;
   }
 
+  .login-alert-error {
+    @apply from-red-400 to-red-600;
+  }
+
+  .login-alert-success {
+    @apply from-indigo-400 to-indigo-600;
+  }
+
   .game-main-container {
     @apply text-center;
   }

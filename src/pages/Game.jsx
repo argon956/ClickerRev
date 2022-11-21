@@ -144,7 +144,8 @@ const Game = () => {
 
   return (
     <>
-      <nav className="game-exit-button">
+      <nav className="game-navbar">
+        <span className="game-player-name">Hi, {loggedPlayerName}</span>
         <Link
           to="/"
           className="game-exit-button"

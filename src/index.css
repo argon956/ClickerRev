@@ -43,6 +43,14 @@
     @apply text-center;
   }
 
+  .game-navbar {
+    @apply text-xl;
+  }
+
+  .game-player-name {
+    @apply m-5;
+  }
+
   .game-score-container {
     @apply font-black text-6xl mt-10;
   }

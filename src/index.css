@@ -83,7 +83,7 @@
   }
 
   .game-high-scores-scoreboard {
-    @apply font-black text-xl mt-4;
+    @apply font-black text-xl mt-4 h-56 overflow-y-auto;
   }
 
   .game-exit-button {

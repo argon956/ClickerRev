@@ -2,14 +2,14 @@
 const cacheName = "clicker-cache";
 const assets = [
   "/",
-  "/index.html",
+  "./favicon.svg",
+  "./manifest.json",
   "../src/components/*",
   "../src/helpers/*",
   "../src/layouts/*",
   "../src/pages/*",
-  "../src/App.jsx",
-  "../src/index.js",
-  "./*",
+  // // "../src/App.jsx",
+  // "../src/index.jsx",
 ];
 
 self.addEventListener("install", (e) => {
